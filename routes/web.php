@@ -14,3 +14,5 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/{width:[0-9]+}/{height:[0-9]+}', 'ImageController@show');
