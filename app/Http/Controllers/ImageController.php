@@ -18,7 +18,7 @@ class ImageController extends Controller
         //
     }
 
-    public function show($width, $height)
+    public function placeImage($width, $height)
     {
         $cacheKey = "{$width}:{$height}";
         if (Cache::has($cacheKey)) {
@@ -29,6 +29,6 @@ class ImageController extends Controller
             Cache::forever($cacheKey, $image);
         }
 
-        return Response($image)->header('Content-Type', 'image/jpg');
+        return Response($image)->header('Content-Type', 'image/png');
     }
 }
