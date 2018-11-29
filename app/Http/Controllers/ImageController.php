@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ImageController extends Controller
@@ -17,9 +18,8 @@ class ImageController extends Controller
 
     public function show ($width, $height)
     {
-        $imageName = app('db')->select("SELECT filename FROM images ORDER BY random() LIMIT 1")[0];
-
-        $image = Image::make("img/2.jpg")->fit($width, $height)->response('jpg');
-        return Response($image)->header('Content-Type', 'image/png');
+        $imageName = DB::table('images')->inRandomOrder()->pluck('filename')->first();
+        $image = Image::make("img/{$imageName}")->fit($width, $height)->response('jpg');
+        return Response($image)->header('Content-Type', 'image/jpg');
     }
 }
