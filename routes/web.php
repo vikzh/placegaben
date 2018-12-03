@@ -15,4 +15,4 @@ $router->get('/', ['as' => 'index', function () use ($router) {
     return $router->app->version();
 }]);
 
-$router->get('/{width:[0-9]+}/{height:[0-9]+}', ['as' => 'image.place', 'uses' => 'ImageController@placeImage']);
+$router->get('/{width:[0-9]+}/{height:[0-9]+}[/{name}]', ['as' => 'image.place', 'uses' => 'ImageController@placeImage']);

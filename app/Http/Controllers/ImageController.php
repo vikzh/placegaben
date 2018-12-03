@@ -8,27 +8,21 @@ use Illuminate\Support\Facades\Cache;
 
 class ImageController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    public function placeImage($width, $height)
+    public function placeImage($width, $height, $name = null)
     {
         $cacheKey = "{$width}:{$height}";
         if (Cache::has($cacheKey)) {
             $image = Cache::get($cacheKey);
         } else {
-            $imageName = DB::table('images')->inRandomOrder()->pluck('filename')->first();
-            $image = Image::make("img/{$imageName}")->fit($width, $height)->response('png');
+            if (!is_null($name)) {
+                $imageFileName = DB::table('images')->where('name', $name)->pluck('filename')->first();
+            } else {
+                $imageFileName = $name ?? DB::table('images')->inRandomOrder()->pluck('filename')->first();
+            }
+
+            $image = Image::make("img/{$imageFileName}")->fit($width, $height)->response('png');
             Cache::forever($cacheKey, $image);
         }
-
         return Response($image)->header('Content-Type', 'image/png');
     }
 }
