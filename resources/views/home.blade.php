@@ -17,8 +17,19 @@
     <div class="container jumbotron mt-2">
         <div class="row align-items-center">
             <div class="col">
-                <div>
+                <div class="d-flex flex-column align-items-start">
                     <h1>PlaceGaben</h1>
+                    <p>A quick and simple service for getting pictures of <strong>Gabe Newell</strong> for use as
+                        placeholders in your designs or code.</p>
+                    <div class="d-flex flex-column w-100">
+                        <p></p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item list-group-item-action list-group-item-dark">
+                                <a class="text-dark"
+                                   href="{{ url('/') }}/100/200/boss">{{ url('/') }}/100/200/boss</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
