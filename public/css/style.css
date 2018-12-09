@@ -1,3 +1,10 @@
-body{
-    background-image: url("../parts/gaben-back.jpg");
+body {
+    background: url("../parts/gaben-back.jpg") no-repeat right bottom fixed #1a1a1a;
+    background-size: 30%;
+}
+@media screen and (max-width: 500px) {
+    img {
+    width: 100%;
+    height: auto;
+    }
 }

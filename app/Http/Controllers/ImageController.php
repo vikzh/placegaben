@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Cache;
 
 class ImageController extends Controller
 {
+    public function index()
+    {
+        $images = DB::table('images')->pluck('name')->all();
+        return view('home', ['images' => $images]);
+    }
+
     public function placeImage($width, $height, $name = null)
     {
         $cacheKey = "{$width}:{$height}";
